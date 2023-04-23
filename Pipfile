@@ -8,6 +8,10 @@ asgiref = "==3.5.2"
 django = "~=4.1.0"
 pillow = "==9.2.0"
 sqlparse = "==0.4.2"
+social-auth-app-django = "*"
+django-extensions = "*"
+werkzeug = "==2.2.2"
+pyopenssl = "*"
 
 [dev-packages]
 
