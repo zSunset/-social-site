@@ -12,6 +12,8 @@ social-auth-app-django = "*"
 django-extensions = "*"
 werkzeug = "==2.2.2"
 pyopenssl = "*"
+requests = "==2.28.1"
+easy-thumbnails = "*"
 
 [dev-packages]
 
