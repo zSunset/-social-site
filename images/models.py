@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Image(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             related_name='images_create',
+                             related_name='images_created',
                              on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
@@ -17,10 +17,12 @@ class Image(models.Model):
     users_like = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                         related_name='images_liked',
                                         blank=True)
+    total_likes = models.PositiveIntegerField(default=0)
 
     class Meta:
         indexes = [
             models.Index(fields=['-created']),
+            models.Index(fields=['-total_likes'])
         ]
         ordering = ['-created']
 
@@ -32,5 +34,5 @@ class Image(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
-    # def get_absolute_url(self):
-    #     return reverse('images:detail', args=[self.id, self.slug])
+    def get_absolute_url(self):
+        return reverse('images:detail', args=[self.id, self.slug])
